@@ -1,0 +1,77 @@
+
+.cart {
+    padding: 20px;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.cart-item h4 {
+    margin: 0;
+}
+
+.cart-item p {
+    margin: 0;
+}
+
+.cart-item input[type="number"] {
+    width: 50px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.cart-item button {
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-edit {
+    background-color: #f0ad4e;
+    color: #fff;
+}
+
+.btn-edit:hover {
+    background-color: #ec971f;
+}
+
+.btn-delete {
+    background-color: #d9534f;
+    color: #fff;
+}
+
+.btn-delete:hover {
+    background-color: #c9302c;
+}
+
+.cart-total {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.check-out {
+    background-color: #d90429;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.check-out:hover {
+    background-color: #d90429;
+}

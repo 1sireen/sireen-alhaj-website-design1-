@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="cart.css">
+    <title>Your Shopping Cart</title>
+</head>
+<body>
+    <header>
+        <h1>Your Shopping Cart</h1>
+    </header>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="cart">
+                        <div class="cart-list" id="cart-list">
+                        
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="cart-total">
+                        <h3>Total:</h3>
+                        <h4>$<span id="cart-total">0.00</span></h4>
+                    </div>
+                    <div class="checkout-button">
+                        <button type="button" class="btn btn-success check-out">
+                            Check Out
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+
+
+
+    
+        const cartItems = [];
+
+        function displayCart() {
+            const cartList = document.getElementById("cart-list");
+            cartList.innerHTML = ""; 
+
+            let total = 0;
+
+            cartItems.forEach((item, index) => {
+                const cartItemDiv = document.createElement("div");
+                cartItemDiv.classList.add("cart-item");
+
+                const itemName = document.createElement("h4");
+                itemName.textContent = item.name;
+
+                const itemPrice = document.createElement("p");
+                itemPrice.textContent = `Price: $${item.price.toFixed(2)}`;
+
+                const itemQuantity = document.createElement("input");
+                itemQuantity.type = "number";
+                itemQuantity.value = item.quantity;
+                itemQuantity.min = 1;
+
+                itemQuantity.addEventListener("change", (event) => {
+                    const newQuantity = parseInt(event.target.value);
+                    if (!isNaN(newQuantity) && newQuantity >= 1) {
+                        cartItems[index].quantity = newQuantity;
+                        displayCart(); 
+                    } else {
+                        alert("Please enter a valid quantity.");
+                    }
+                });
+
+                const editButton = document.createElement("button");
+                editButton.classList.add("btn", "btn-warning", "btn-edit");
+                editButton.textContent = "Edit";
+                editButton.addEventListener("click", () => {
+                   
+                });
+
+                const deleteButton = document.createElement("button");
+                deleteButton.classList.add("btn", "btn-danger", "btn-delete");
+                deleteButton.textContent = "Delete";
+                deleteButton.addEventListener("click", () => {
+                    removeFromCart(index);
+                });
+
+                cartItemDiv.appendChild(itemName);
+                cartItemDiv.appendChild(itemPrice);
+                cartItemDiv.appendChild(itemQuantity);
+                cartItemDiv.appendChild(editButton);
+                cartItemDiv.appendChild(deleteButton);
+
+                cartList.appendChild(cartItemDiv);
+
+    
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+            });
+
+
+            document.getElementById("cart-total").textContent = total.toFixed(2);
+        }
+        cartItems.push(
+            { name: "Lightning mcqueen", price: 1300.99, quantity: 2 },
+            { name: "saly", price: 1900.99, quantity: 1 }
+
+        );
+
+        displayCart();
+
+        function removeFromCart(index) {
+            if (index >= 0 && index < cartItems.length) {
+                cartItems.splice(index, 1);
+                displayCart();
+            }
+        }
+    </script>
+</body>
+</html>
